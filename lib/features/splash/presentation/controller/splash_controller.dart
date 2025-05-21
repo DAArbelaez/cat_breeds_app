@@ -9,6 +9,7 @@ class SplashController extends _$SplashController {
   @override
   void build() => initializeApp();
 
+  /// Here we can initialize any necessary services or configurations
   Future<void> initializeApp() async {
     // Simulate a delay for splash screen
     await Future.delayed(const Duration(seconds: 2));
