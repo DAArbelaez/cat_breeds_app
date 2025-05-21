@@ -1,4 +1,6 @@
+import 'package:cat_breeds_app/core/constants/app_constants.dart';
 import 'package:cat_breeds_app/features/common/widgets/custom_appbar/custom_appbar.dart';
+import 'package:cat_breeds_app/features/common/widgets/input_search.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,11 +8,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppbar(),
-      body: Center(
-        child: Text(
-          'Welcome to the Home Screen!',
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        appBar: CustomAppbar(),
+        body: Padding(
+          padding: kPagePadding,
+          child: Center(
+            child: Column(children: [
+              InputSearch(onSearchChanged: (value) {}, hintText: 'Search for a breed'),
+              Text('Welcome to the Home Screen!')]),
+          ),
         ),
       ),
     );
