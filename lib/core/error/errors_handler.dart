@@ -1,4 +1,5 @@
 import 'dart:async' show TimeoutException;
+import 'dart:io';
 
 import 'package:logger/logger.dart';
 
@@ -20,6 +21,10 @@ class ErrorsHandler {
       case TypeError _:
         {
           errorMessage = 'TypeError in $functionName while mapping.';
+        }
+      case HttpException _:
+        {
+          errorMessage = 'HttpException in $functionName.';
         }
       case TimeoutException _:
         {
