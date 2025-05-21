@@ -3,14 +3,16 @@ import 'package:cat_breeds_app/core/constants/icons.dart';
 import 'package:cat_breeds_app/core/constants/palette.dart';
 import 'package:cat_breeds_app/core/constants/text_styles.dart';
 import 'package:cat_breeds_app/features/common/widgets/network_image_loader.dart';
-import 'package:cat_breeds_app/features/home/domain/entities/cat_breed_model.dart';
+import 'package:cat_breeds_app/features/home/common/domain/entities/cat_breed_model.dart';
+import 'package:cat_breeds_app/features/home/common/presentation/widgets/stat_item.dart';
 import 'package:cat_breeds_app/features/home/presentation/widgets/scrollable_chip_row.dart';
 import 'package:flutter/material.dart';
 
 class CatBreedCard extends StatelessWidget {
-  const CatBreedCard({super.key, required this.catBreed});
+  const CatBreedCard({super.key, required this.catBreed, required this.onMoreInfoPressed});
 
   final CatBreedModel catBreed;
+  final VoidCallback onMoreInfoPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -49,15 +51,15 @@ class CatBreedCard extends StatelessWidget {
               children: [
                 Tooltip(
                   message: 'Weight: ${catBreed.weightMetric} Kg',
-                  child: _StatItem(icon: AppIcons.monitorWeight, label: catBreed.weightMetric, caption: 'Kg'),
+                  child: StatItem(icon: AppIcons.monitorWeight, label: catBreed.weightMetric, caption: 'Kg'),
                 ),
                 Tooltip(
                   message: 'Lifespan: ${catBreed.lifeSpan}',
-                  child: _StatItem(icon: AppIcons.favorite, label: catBreed.lifeSpan, caption: 'Years'),
+                  child: StatItem(icon: AppIcons.favorite, label: catBreed.lifeSpan, caption: 'Years'),
                 ),
                 Tooltip(
                   message: 'Intelligence: ${catBreed.intelligence}',
-                  child: _StatItem(icon: AppIcons.intelligence, label: '${catBreed.intelligence}'),
+                  child: StatItem(icon: AppIcons.intelligence, label: '${catBreed.intelligence}'),
                 ),
               ],
             ),
@@ -78,9 +80,7 @@ class CatBreedCard extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {
-                  // TODO: navigate to detail page
-                },
+                onPressed: onMoreInfoPressed,
                 style: TextButton.styleFrom(
                   backgroundColor: Palette.primary,
                   padding: const EdgeInsets.symmetric(horizontal: Dimens.d16, vertical: Dimens.d8),
@@ -92,27 +92,6 @@ class CatBreedCard extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _StatItem extends StatelessWidget {
-  const _StatItem({required this.icon, required this.label, this.caption});
-
-  final Widget icon;
-  final String label;
-  final String? caption;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        icon,
-        const SizedBox(width: Dimens.d8),
-        Text(label, style: AppTextStyle.bodySmall),
-        const SizedBox(width: Dimens.d8),
-        if (caption != null) Text(caption!, style: AppTextStyle.bodySmall),
-      ],
     );
   }
 }

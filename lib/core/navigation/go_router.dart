@@ -1,4 +1,6 @@
 import 'package:cat_breeds_app/core/navigation/routes.dart';
+import 'package:cat_breeds_app/features/home/cat_breed_details/presentation/cat_breed_details_screen.dart';
+import 'package:cat_breeds_app/features/home/common/domain/entities/cat_breed_model.dart';
 import 'package:cat_breeds_app/features/home/presentation/home_screen.dart';
 import 'package:cat_breeds_app/features/splash/presentation/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +35,18 @@ class GoRouterHelper {
         pageBuilder: (_, state) {
           return _getPage(
             child: const HomeScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        path: Routes.details.path,
+        name: Routes.details.name,
+        pageBuilder: (_, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final catBreed = state.extra as CatBreedModel;
+          return _getPage(
+            child: CatBreedDetailsScreen(breedId: id, catBreed: catBreed),
             state: state,
           );
         },

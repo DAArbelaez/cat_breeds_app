@@ -1,6 +1,6 @@
 import 'package:cat_breeds_app/core/error/errors_handler.dart';
-import 'package:cat_breeds_app/features/home/domain/entities/cat_breed_model.dart';
-import 'package:cat_breeds_app/features/home/domain/repositories/cat_breed_repository.dart';
+import 'package:cat_breeds_app/features/home/common/domain/entities/cat_breed_model.dart';
+import 'package:cat_breeds_app/features/home/common/domain/repositories/cat_breed_repository.dart';
 
 class GetCatBreedsUseCase {
   final CatBreedRepository repository;
