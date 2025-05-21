@@ -7,4 +7,5 @@ class Routes {
   static const rootRoute = Routes._(name: 'root', path: '/');
 
   static const home = Routes._(name: 'home', path: '/home');
+  static const details = Routes._(name: 'details', path: '/details/:id');
 }

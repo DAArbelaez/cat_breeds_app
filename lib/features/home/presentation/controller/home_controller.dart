@@ -1,4 +1,4 @@
-import 'package:cat_breeds_app/features/home/domain/entities/cat_breed_model.dart';
+import 'package:cat_breeds_app/features/home/common/domain/entities/cat_breed_model.dart';
 import 'package:cat_breeds_app/features/home/home_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

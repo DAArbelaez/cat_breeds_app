@@ -7,6 +7,7 @@ class CatBreedModel {
   final int intelligence;
   final List<String> temperament;
   final String imageUrl;
+  final String description;
 
   const CatBreedModel({
     required this.id,
@@ -17,5 +18,6 @@ class CatBreedModel {
     required this.intelligence,
     required this.temperament,
     required this.imageUrl,
+    required this.description,
   });
 }

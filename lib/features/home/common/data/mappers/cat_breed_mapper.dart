@@ -1,5 +1,5 @@
-import 'package:cat_breeds_app/features/home/data/dtos/cat_breed_dto.dart';
-import 'package:cat_breeds_app/features/home/domain/entities/cat_breed_model.dart';
+import 'package:cat_breeds_app/features/home/common/data/dtos/cat_breed_dto.dart';
+import 'package:cat_breeds_app/features/home/common/domain/entities/cat_breed_model.dart';
 
 extension CatBreedDTOMapper on CatBreedDTO {
   CatBreedModel toDomain() => CatBreedModel(
@@ -11,5 +11,6 @@ extension CatBreedDTOMapper on CatBreedDTO {
     intelligence: intelligence,
     temperament: temperament,
     imageUrl: imageUrl,
+    description: description,
   );
 }

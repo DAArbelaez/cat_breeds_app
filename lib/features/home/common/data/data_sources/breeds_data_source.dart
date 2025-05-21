@@ -1,5 +1,5 @@
 import 'package:cat_breeds_app/core/network/api_client.dart';
-import 'package:cat_breeds_app/features/home/data/dtos/cat_breed_dto.dart';
+import 'package:cat_breeds_app/features/home/common/data/dtos/cat_breed_dto.dart';
 
 abstract class BreedsDataSource {
   Future<List<CatBreedDTO>> fetchBreeds();

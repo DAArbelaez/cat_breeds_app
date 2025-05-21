@@ -1,5 +1,7 @@
 import 'package:cat_breeds_app/core/constants/app_constants.dart';
 import 'package:cat_breeds_app/core/constants/dimens.dart';
+import 'package:cat_breeds_app/core/navigation/go_router.dart';
+import 'package:cat_breeds_app/core/navigation/routes.dart';
 import 'package:cat_breeds_app/features/common/widgets/custom_appbar/custom_appbar.dart';
 import 'package:cat_breeds_app/features/common/widgets/input_search.dart';
 import 'package:cat_breeds_app/features/home/presentation/controller/home_controller.dart';
@@ -29,7 +31,13 @@ class HomeScreen extends ConsumerWidget {
                     itemCount: controller.length,
                     itemBuilder: (context, index) {
                       final breed = controller[index];
-                      return CatBreedCard(catBreed: breed);
+                      return CatBreedCard(
+                        catBreed: breed,
+                        onMoreInfoPressed:
+                            () => ref
+                                .read(goRouterProvider)
+                                .pushNamed(Routes.details.name, pathParameters: {'id': breed.id}, extra: breed),
+                      );
                     },
                   ),
                 ),

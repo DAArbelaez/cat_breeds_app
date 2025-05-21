@@ -7,6 +7,7 @@ class CatBreedDTO {
   final int intelligence;
   final List<String> temperament;
   final String imageUrl;
+  final String description;
 
   CatBreedDTO({
     required this.id,
@@ -17,6 +18,7 @@ class CatBreedDTO {
     required this.intelligence,
     required this.temperament,
     required this.imageUrl,
+    required this.description,
   });
 
   factory CatBreedDTO.fromJson(Map<String, dynamic> json) {
@@ -29,17 +31,7 @@ class CatBreedDTO {
       intelligence: json['intelligence'] as int,
       temperament: (json['temperament'] as String).split(',').map((s) => s.trim()).toList(),
       imageUrl: 'https://cdn2.thecatapi.com/images/${json['reference_image_id']}.jpg',
+      description: (json['description'] as String).trim(),
     );
   }
-
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'name': name,
-    'origin': origin,
-    'weight': {'metric': weightMetric},
-    'life_span': lifeSpan,
-    'intelligence': intelligence,
-    'temperament': temperament.join(', '),
-    'reference_image_id': imageUrl.split('/').last.replaceAll('.jpg', ''),
-  };
 }
