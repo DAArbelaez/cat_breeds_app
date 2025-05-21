@@ -34,7 +34,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                         Navigator.pop(context);
                       }
                     },
-                    icon: AppIcons.backArrow,
+                    icon: AppIcons.arrowBack,
                   ),
                 ),
                 CatBreedsLogo(size: Dimens.d25),

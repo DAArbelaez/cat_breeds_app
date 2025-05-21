@@ -14,6 +14,7 @@ class HomeController extends _$HomeController {
 
   Future<void> fetchBreeds() async {
     final response = await ref.read(getBreedsUseCase).call();
+    state = response;
     print('CATS BREEDS ${response.length}');
   }
 }
