@@ -2,16 +2,16 @@ import 'package:cat_breeds_app/core/error/errors_handler.dart';
 import 'package:cat_breeds_app/features/home/common/domain/entities/cat_breed_model.dart';
 import 'package:cat_breeds_app/features/home/common/domain/repositories/cat_breed_repository.dart';
 
-class GetCatBreedsUseCase {
+class SearchCatBreedsUseCase {
   final CatBreedRepository repository;
 
-  GetCatBreedsUseCase(this.repository);
+  SearchCatBreedsUseCase(this.repository);
 
-  Future<List<CatBreedModel>> call() {
+  Future<List<CatBreedModel>> call({String query = ''}) {
     try {
-      return repository.getBreeds();
+      return repository.searchBreeds(query);
     } catch (e) {
-      ErrorsHandler.handleError(error: e, functionName: 'GetCatBreedsUseCase');
+      ErrorsHandler.handleError(error: e, functionName: 'SearchCatBreedsUseCase');
       rethrow;
     }
   }
