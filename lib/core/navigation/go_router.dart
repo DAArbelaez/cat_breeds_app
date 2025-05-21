@@ -1,6 +1,6 @@
 import 'package:cat_breeds_app/core/navigation/routes.dart';
-import 'package:cat_breeds_app/feature/home/presentation/home_screen.dart';
-import 'package:cat_breeds_app/feature/splash/presentation/splash_screen.dart';
+import 'package:cat_breeds_app/features/home/presentation/home_screen.dart';
+import 'package:cat_breeds_app/features/splash/presentation/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
