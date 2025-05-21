@@ -1,7 +1,9 @@
 import 'package:cat_breeds_app/core/constants/app_constants.dart';
+import 'package:cat_breeds_app/core/constants/dimens.dart';
 import 'package:cat_breeds_app/features/common/widgets/custom_appbar/custom_appbar.dart';
 import 'package:cat_breeds_app/features/common/widgets/input_search.dart';
 import 'package:cat_breeds_app/features/home/presentation/controller/home_controller.dart';
+import 'package:cat_breeds_app/features/home/presentation/widgets/cat_breed_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,7 +12,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.read(homeControllerProvider);
+    final controller = ref.watch(homeControllerProvider);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -18,9 +20,21 @@ class HomeScreen extends ConsumerWidget {
         body: Padding(
           padding: kPagePadding,
           child: Center(
-            child: Column(children: [
-              InputSearch(onSearchChanged: (value) {}, hintText: 'Search for a breed'),
-              Text('Welcome to the Home Screen!')]),
+            child: Column(
+              children: [
+                InputSearch(onSearchChanged: (value) {}, hintText: 'Search for a breed'),
+                const SizedBox(height: Dimens.d16),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: controller.length,
+                    itemBuilder: (context, index) {
+                      final breed = controller[index];
+                      return CatBreedCard(catBreed: breed);
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
