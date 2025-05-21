@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'splash_controller.dart';
+part of 'home_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$splashControllerHash() => r'910a9608422b4560b08f0ad61abac9740ba8cd7a';
+String _$homeControllerHash() => r'6148186f032381827dd97439b1166417ab9ceaae';
 
-/// See also [SplashController].
-@ProviderFor(SplashController)
-final splashControllerProvider =
-    AutoDisposeNotifierProvider<SplashController, void>.internal(
-      SplashController.new,
-      name: r'splashControllerProvider',
+/// See also [HomeController].
+@ProviderFor(HomeController)
+final homeControllerProvider =
+    AutoDisposeNotifierProvider<HomeController, List<CatBreedModel>>.internal(
+      HomeController.new,
+      name: r'homeControllerProvider',
       debugGetCreateSourceHash:
           const bool.fromEnvironment('dart.vm.product')
               ? null
-              : _$splashControllerHash,
+              : _$homeControllerHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$SplashController = AutoDisposeNotifier<void>;
+typedef _$HomeController = AutoDisposeNotifier<List<CatBreedModel>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
