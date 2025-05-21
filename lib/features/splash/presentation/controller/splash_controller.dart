@@ -15,6 +15,6 @@ class SplashController extends _$SplashController {
     await Future.delayed(const Duration(seconds: 2));
 
     // Navigate to the home screen
-    ref.read(goRouterProvider).pushNamed(Routes.home.name);
+    ref.read(goRouterProvider).goNamed(Routes.home.name);
   }
 }
