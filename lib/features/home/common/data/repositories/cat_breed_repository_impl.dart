@@ -9,8 +9,8 @@ class CatBreedRepositoryImpl implements CatBreedRepository {
   CatBreedRepositoryImpl(this.datasource);
 
   @override
-  Future<List<CatBreedModel>> getBreeds() async {
-    final dtos = await datasource.fetchBreeds();
+  Future<List<CatBreedModel>> searchBreeds(String query) async {
+    final dtos = await datasource.searchBreeds(query);
     return dtos.map((dto) => dto.toDomain()).toList();
   }
 }

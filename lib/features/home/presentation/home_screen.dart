@@ -14,35 +14,50 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(homeControllerProvider);
+    final asyncBreeds = ref.watch(homeControllerProvider);
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: CustomAppbar(),
+        appBar: const CustomAppbar(),
         body: Padding(
           padding: kPagePadding,
-          child: Center(
-            child: Column(
-              children: [
-                InputSearch(onSearchChanged: (value) {}, hintText: 'Search for a breed'),
-                const SizedBox(height: Dimens.d16),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: controller.length,
-                    itemBuilder: (context, index) {
-                      final breed = controller[index];
-                      return CatBreedCard(
-                        catBreed: breed,
-                        onMoreInfoPressed:
-                            () => ref
-                                .read(goRouterProvider)
-                                .pushNamed(Routes.details.name, pathParameters: {'id': breed.id}, extra: breed),
-                      );
-                    },
-                  ),
+          child: Column(
+            children: [
+              InputSearch(
+                onSearchChanged: (value) {
+                  ref.read(homeControllerProvider.notifier).search(value);
+                },
+                hintText: 'Search for a breed',
+              ),
+              const SizedBox(height: Dimens.d16),
+              Expanded(
+                child: asyncBreeds.when(
+                  loading: () => const Center(child: CircularProgressIndicator()),
+                  error: (err, _) => Center(child: Text('Error: $err')),
+                  data: (breeds) {
+                    if (breeds.isEmpty) {
+                      return const Center(child: Text('No breeds found.'));
+                    }
+                    return ListView.builder(
+                      itemCount: breeds.length,
+                      itemBuilder: (context, index) {
+                        final breed = breeds[index];
+                        return CatBreedCard(
+                          catBreed: breed,
+                          onMoreInfoPressed: () {
+                            ref.read(goRouterProvider).pushNamed(
+                                Routes.details.name,
+                                pathParameters: {'id': breed.id}, extra: breed,
+                            );
+                          },
+                        );
+                      },
+                    );
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
