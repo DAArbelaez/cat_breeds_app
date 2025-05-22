@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cat_breeds_app/core/constants/icons.dart';
 import 'package:flutter/material.dart';
 
@@ -16,22 +17,20 @@ class NetworkImageLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget img = Image.network(
-      imageUrl,
+    Widget img = CachedNetworkImage(
+      imageUrl: imageUrl,
       width: size,
       height: size,
       fit: fit,
-      // Show a progress indicator while loading
-      loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress == null) {
-          return child;
-        }
+      // Show a placeholder while the image is loading
+      placeholder: (_, __) {
         return SizedBox(width: size, height: size, child: const Center(child: CircularProgressIndicator()));
       },
       // Show an error icon if loading fails
-      errorBuilder: (context, error, stackTrace) {
+      errorWidget: (_, __, ___) {
         return SizedBox(width: size, height: size, child: Center(child: AppIcons.brokenImage));
       },
+      fadeInDuration: const Duration(milliseconds: 150),
     );
 
     // Apply rounded corners if a borderRadius is provided
